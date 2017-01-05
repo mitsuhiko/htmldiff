@@ -8,7 +8,7 @@ setup(
     name='htmldiff',
     author='Armin Ronacher',
     author_email='armin.ronacher@active-4.com',
-    version='0.1',
+    version='0.2',
     url='http://github.com/mitsuhiko/htmldiff',
     py_modules=['htmldiff'],
     description='Diffs arbitrary HTML inline.',
