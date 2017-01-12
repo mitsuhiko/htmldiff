@@ -8,14 +8,14 @@
 
     >>> from htmldiff import render_html_diff
 
-    >>> render_html_diff('Foo <b>bar</b> baz', 'Foo <i>bar</i> baz')
-    u'<div class="diff">Foo <i class="tagdiff_replaced">bar</i> baz</div>'
+    >>> print(render_html_diff('Foo <b>bar</b> baz', 'Foo <i>bar</i> baz'))
+    <div class="diff">Foo <i class="tagdiff_replaced">bar</i> baz</div>
 
-    >>> render_html_diff('Foo bar baz', 'Foo baz')
-    u'<div class="diff">Foo <del>bar</del> baz</div>'
+    >>> print(render_html_diff('Foo bar baz', 'Foo baz'))
+    <div class="diff">Foo <del>bar</del> baz</div>
 
-    >>> render_html_diff('Foo baz', 'Foo blah baz')
-    u'<div class="diff">Foo <ins>blah</ins> baz</div>'
+    >>> print(render_html_diff('Foo baz', 'Foo blah baz'))
+    <div class="diff">Foo <ins>blah</ins> baz</div>
 
     :copyright: (c) 2011 by Armin Ronacher, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.

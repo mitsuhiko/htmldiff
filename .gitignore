@@ -2,3 +2,5 @@
 *.pyo
 dist
 *.egg-info
+.cache
+.eggs
