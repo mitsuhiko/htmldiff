@@ -4,3 +4,7 @@ dist
 *.egg-info
 .cache
 .eggs
+
+# Coverage
+.coverage
+htmlcov
