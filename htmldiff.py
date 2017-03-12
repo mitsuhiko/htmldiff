@@ -234,7 +234,6 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
     def leave(self, pos, tag):
         if not self._stack:
             return False
-        current_tag = self._stack[-1]
         if tag == self._stack[-1]:
             self.append(END, tag, pos)
             self._stack.pop()
