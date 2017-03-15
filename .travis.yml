@@ -1,0 +1,34 @@
+language: python
+
+cache: pip
+
+# Supported CPython versions:
+# https://en.wikipedia.org/wiki/CPython#Version_history
+python:
+ - 2.7
+ - 3.6
+ - 3.5
+ - 3.4
+ - 3.3
+
+install:
+ - pip install -r requirements.txt
+ - pip install coverage pep8 pyflakes
+
+script:
+
+ # Test
+ - coverage run --include=htmldiff.py test.py
+
+ # Static analysis
+ - pyflakes .
+ - pep8 --statistics --count .
+
+after_success:
+ - pip install codecov && codecov
+
+after_script:
+ - coverage report
+
+matrix:
+  fast_finish: true

@@ -8,14 +8,14 @@
 
     >>> from htmldiff import render_html_diff
 
-    >>> render_html_diff('Foo <b>bar</b> baz', 'Foo <i>bar</i> baz')
-    u'<div class="diff">Foo <i class="tagdiff_replaced">bar</i> baz</div>'
+    >>> print(render_html_diff('Foo <b>bar</b> baz', 'Foo <i>bar</i> baz'))
+    <div class="diff">Foo <i class="tagdiff_replaced">bar</i> baz</div>
 
-    >>> render_html_diff('Foo bar baz', 'Foo baz')
-    u'<div class="diff">Foo <del>bar</del> baz</div>'
+    >>> print(render_html_diff('Foo bar baz', 'Foo baz'))
+    <div class="diff">Foo <del>bar</del> baz</div>
 
-    >>> render_html_diff('Foo baz', 'Foo blah baz')
-    u'<div class="diff">Foo <ins>blah</ins> baz</div>'
+    >>> print(render_html_diff('Foo baz', 'Foo blah baz'))
+    <div class="diff">Foo <ins>blah</ins> baz</div>
 
     :copyright: (c) 2011 by Armin Ronacher, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
@@ -67,7 +67,7 @@ def longzip(a, b):
     biter = iter(b)
     try:
         for item1 in aiter:
-            yield item1, biter.next()
+            yield item1, next(biter)
     except StopIteration:
         for item1 in aiter:
             yield item1, None
@@ -111,7 +111,7 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
 
     def text_split(self, text):
         worditer = chain([u''], _diff_split_re.split(text))
-        return [x + worditer.next() for x in worditer]
+        return [x + next(worditer) for x in worditer]
 
     def cut_leading_space(self, s):
         match = _leading_space_re.match(s)
@@ -234,7 +234,6 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
     def leave(self, pos, tag):
         if not self._stack:
             return False
-        current_tag = self._stack[-1]
         if tag == self._stack[-1]:
             self.append(END, tag, pos)
             self._stack.pop()
